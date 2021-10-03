@@ -1,0 +1,53 @@
+<project>
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>lwahonen</groupId>
+  <artifactId>jna-repro</artifactId>
+  <packaging>jar</packaging>
+  <version>1.0-SNAPSHOT</version>
+  <name>jna-repro</name>
+  <url>http://maven.apache.org</url>
+  <dependencies>
+    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna -->
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna</artifactId>
+      <version>5.9.0</version>
+    </dependency>
+    <!-- https://mvnrepository.com/artifact/net.java.dev.jna/jna-platform -->
+    <dependency>
+      <groupId>net.java.dev.jna</groupId>
+      <artifactId>jna-platform</artifactId>
+      <version>5.9.0</version>
+    </dependency>
+  </dependencies>
+  <properties>
+    <maven.compiler.source>1.8</maven.compiler.source>
+    <maven.compiler.target>1.8</maven.compiler.target>
+  </properties>
+  <build>
+  <plugins>
+    <plugin>
+      <groupId>org.apache.maven.plugins</groupId>
+      <artifactId>maven-assembly-plugin</artifactId>
+      <executions>
+        <execution>
+          <goals>
+            <goal>attached</goal>
+          </goals>
+          <phase>package</phase>
+          <configuration>
+            <descriptorRefs>
+              <descriptorRef>jar-with-dependencies</descriptorRef>
+            </descriptorRefs>
+            <archive>
+              <manifest>
+                <mainClass>jnarepro.Corretto302Crash</mainClass>
+              </manifest>
+            </archive>
+          </configuration>
+        </execution>
+      </executions>
+    </plugin>
+  </plugins>
+  </build>
+</project>
