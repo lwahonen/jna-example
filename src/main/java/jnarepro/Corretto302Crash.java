@@ -31,6 +31,17 @@ public class Corretto302Crash {
 
 
     public static class ComponentDescription extends Structure {
+//        typedef UInt32                          FourCharCode;
+//        typedef FourCharCode                    OSType;
+//        #pragma pack(push, 4)
+//        typedef struct AudioComponentDescription {
+//            OSType              componentType;
+//            OSType              componentSubType;
+//            OSType              componentManufacturer;
+//            UInt32              componentFlags;
+//            UInt32              componentFlagsMask;
+//        } AudioComponentDescription;
+//        #pragma pack(pop)
         public int componentType;          /* A unique 4-byte code indentifying the command set */
         public int componentSubType;       /* Particular flavor of this instance */
         public int componentManufacturer;  /* Vendor indentification */
@@ -39,27 +50,15 @@ public class Corretto302Crash {
 
         public ComponentDescription() {
             super();
-
         }
 
         protected List<String> getFieldOrder() {
             return Arrays.asList(new String[]{"componentType", "componentSubType", "componentManufacturer", "componentFlags", "componentFlagsMask"});
         }
-
-
-        public ComponentDescription(Pointer memory) {
-            super(memory);
-
-            read();
-        }
     }
 
 
     public static int stringToInt(String toConvert) {
-        if (toConvert.equals("0"))
-            return 0;
-        if (toConvert.equals("1"))
-            return 1;
         ByteBuffer conv = null;
         try {
             conv = ByteBuffer.wrap(toConvert.getBytes("US-ASCII"));
