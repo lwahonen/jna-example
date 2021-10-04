@@ -80,11 +80,13 @@ public class Corretto302Crash {
         desc.componentFlags = 0;
         desc.componentFlagsMask = 0;
 
+        System.out.println("Using struct "+desc);
         //Finds a component that meets the desc spec's
         Pointer comp = AudioUnitLibrary.INSTANCE.FindNextComponent(Pointer.NULL, desc);
         if (comp.equals(Pointer.NULL)) {
             throw new RuntimeException("Error in FindNextComponent");
         }
+        System.out.println("Got component "+comp);
 
         //gains access to the services provided by the component
         PointerByReference mInputUnit = new PointerByReference();
@@ -92,6 +94,7 @@ public class Corretto302Crash {
         if (err != 0) {
             throw new RuntimeException("Error in OpenAComponent");
         }
+        System.out.println("For this component, got the audio unit "+mInputUnit.getValue());
 
         err = AudioUnitLibrary.INSTANCE.AudioUnitInitialize(mInputUnit.getValue());
         if (err != 0) {
