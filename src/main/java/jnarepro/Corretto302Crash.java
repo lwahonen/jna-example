@@ -92,13 +92,13 @@ public class Corretto302Crash {
         PointerByReference mInputUnit = new PointerByReference();
         int err = AudioUnitLibrary.INSTANCE.OpenAComponent(comp, mInputUnit);
         if (err != 0) {
-            throw new RuntimeException("Error in OpenAComponent");
+            throw new RuntimeException("Error "+err+" in OpenAComponent");
         }
         System.out.println("For this component, got the audio unit "+mInputUnit.getValue());
 
         err = AudioUnitLibrary.INSTANCE.AudioUnitInitialize(mInputUnit.getValue());
         if (err != 0) {
-            throw new RuntimeException("Error in AudioUnitInitialize");
+            throw new RuntimeException("Error "+err+" in AudioUnitInitialize");
         }
         System.out.println("Test passed without issues");
     }
